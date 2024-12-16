@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>Check Delivery Days</h2>
+  
+    <div class="form-group">
+      <label for="asin">ASIN:</label>
+      <input type="text" id="asin" [(ngModel)]="asin" class="form-control" placeholder="Enter ASIN" />
+    </div>
+  
+    <div class="form-group">
+      <label for="pincode">Pincode:</label>
+      <input
+        type="text"
+        id="pincode"
+        [(ngModel)]="pincodeInput"
+        class="form-control"
+        placeholder="Enter Pincode"
+      />
+      <button class="btn btn-primary mt-2" (click)="addPincode()">Add Pincode</button>
+    </div>
+  
+    <div>
+      <h4>Added Pincodes:</h4>
+      <ul>
+        <li *ngFor="let pincode of pincodes; let i = index">
+          {{ pincode }}
+          <button class="btn btn-danger btn-sm" (click)="removePincode(i)">Remove</button>
+        </li>
+      </ul>
+    </div>
+  
+    <button class="btn btn-success mt-3" (click)="checkDeliveryDays()">Check Delivery Days</button>
+  
+    <div *ngIf="response" class="mt-4">
+      <h4>Results:</h4>
+      <ul>
+        <li *ngFor="let result of response.results">
+          Pincode: {{ result.pincode }} - 
+          <span *ngIf="result.delivery_days !== undefined">Delivery Days: {{ result.delivery_days }}</span>
+          <span *ngIf="result.error">Error: {{ result.error }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="error" class="alert alert-danger mt-4">
+      {{ error }}
+    </div>
+  </div>
+  

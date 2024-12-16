@@ -1,0 +1,15 @@
+<!-- app.component.html -->
+<div>
+    <label for="productCode">Product Code:</label>
+    <input type="text" id="productCode" [(ngModel)]="code" placeholder="Enter product code">
+    
+    <button (click)="callApi()">Call API</button>
+  
+    <div *ngIf="result !== null">
+      <h3>Other Options Count: {{ result }}</h3>
+    </div>
+    <div *ngIf="errorMessage">
+      <h3 style="color: red;">{{ errorMessage }}</h3>
+    </div>
+  </div>
+  
